@@ -11,9 +11,9 @@ class IntroPage extends StatefulWidget {
 class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.grey,
-      body: SafeArea(
+      body: const SafeArea(
         child: SingleChildScrollView(
           child: Center(
             child: Padding(
@@ -67,6 +67,10 @@ class _IntroPageState extends State<IntroPage> {
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.message_rounded),
       ),
     );
   }

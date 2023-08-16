@@ -18,6 +18,9 @@ class _FormLayoutState extends State<FormLayout> {
   final TextEditingController _emailAddress = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
+  String initialCountry = 'NG';
+  PhoneNumber number = PhoneNumber(isoCode: 'NG');
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -149,26 +152,33 @@ class _FormLayoutState extends State<FormLayout> {
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 8, bottom: 8),
-                  child: TextFormField(
-                    controller: _phoneNumber,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "This field cannot be empty";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      hintStyle: GoogleFonts.inter(
-                        textStyle: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      hintText: "Example: 810000000",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 1),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: InternationalPhoneNumberInput(
+                      hintText: "Example: 818000000",
+                      onInputChanged: (PhoneNumber number) {},
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "This field cannot be empty";
+                        }
+                        return null;
+                      },
+                      maxLength: 11,
+                      selectorConfig: const SelectorConfig(
+                          selectorType: PhoneInputSelectorType.DROPDOWN,
+                          showFlags: true),
+                      ignoreBlank: false,
+                      autoValidateMode: AutovalidateMode.disabled,
+                      selectorTextStyle: const TextStyle(color: Colors.black),
+                      initialValue: number,
+                      textFieldController: _phoneNumber,
+                      formatInput: false,
+                      spaceBetweenSelectorAndTextField: 0,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
+                      inputBorder: InputBorder.none,
                     ),
                   ),
                 ),
@@ -245,6 +255,7 @@ class _FormLayoutState extends State<FormLayout> {
                   margin: const EdgeInsets.only(top: 8, bottom: 8),
                   child: TextFormField(
                     obscureText: true,
+                    controller: _password,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "This field cannot be empty";
