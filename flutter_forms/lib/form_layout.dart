@@ -206,6 +206,7 @@ class _FormLayoutState extends State<FormLayout> {
                   margin: const EdgeInsets.only(top: 8, bottom: 8),
                   child: TextFormField(
                     controller: _emailAddress,
+                    keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       String pattern = r"\w+@\w+\..";
                       RegExp expression = RegExp(pattern);
@@ -284,13 +285,16 @@ class _FormLayoutState extends State<FormLayout> {
           ),
 
           // Text
-          Text(
-            'I confirm the information provided as they appear on my legal document',
-            style: GoogleFonts.inter(
-              textStyle: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                color: Colors.grey,
+          Container(
+            margin: const EdgeInsets.only(bottom: 24),
+            child: Text(
+              'I confirm the information provided as they appear on my legal document',
+              style: GoogleFonts.inter(
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey,
+                ),
               ),
             ),
           ),
@@ -301,7 +305,8 @@ class _FormLayoutState extends State<FormLayout> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               elevation: 0,
-              backgroundColor: const Color.fromARGB(1, 220, 220, 220),
+              minimumSize: const Size.fromHeight(50),
+              backgroundColor: Colors.grey[300],
               foregroundColor: Colors.white,
             ),
             onPressed: () {
@@ -311,7 +316,7 @@ class _FormLayoutState extends State<FormLayout> {
               }
             },
             child: Text(
-              'Password',
+              'Create your account',
               style: GoogleFonts.inter(
                 textStyle: const TextStyle(
                   fontSize: 16,

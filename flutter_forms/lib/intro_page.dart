@@ -12,7 +12,7 @@ class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.grey[300],
       body: const SafeArea(
         child: SingleChildScrollView(
           child: Center(
@@ -69,7 +69,10 @@ class _IntroPageState extends State<IntroPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
         onPressed: () {},
+        shape: const CircleBorder(),
         child: const Icon(Icons.message_rounded),
       ),
     );
