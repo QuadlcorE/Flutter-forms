@@ -166,6 +166,8 @@ class _FormLayoutState extends State<FormLayout> {
                         return null;
                       },
                       maxLength: 11,
+                      searchBoxDecoration: InputDecoration(
+                          filled: true, fillColor: Colors.grey[300]),
                       selectorConfig: const SelectorConfig(
                           selectorType: PhoneInputSelectorType.DROPDOWN,
                           showFlags: true),
@@ -311,8 +313,15 @@ class _FormLayoutState extends State<FormLayout> {
             ),
             onPressed: () {
               if (_formkey.currentState!.validate()) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text("User validation successful")));
+                var name =
+                    "${_legalFirstNameController.text.toString()} ${_legalSurnameController.text.toString()}";
+                Navigator.pushNamed(context, '/signedIn', arguments: {
+                  "Name": name,
+                  "PhoneNumber": _phoneNumber.text,
+                  "EmailAddress": _emailAddress.text,
+                });
+                // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                //     content: Text("User validation successful")));
               }
             },
             child: Text(
